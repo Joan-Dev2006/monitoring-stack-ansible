@@ -35,7 +35,8 @@ Ce projet automatise le déploiement d'une stack de supervision complète. Il ut
 ### 1. Prérequis
 - Système Linux (Ubuntu/Debian recommandé) ou WSL2.
 - Docker Engine >= 20.10 & Docker Compose V2.
-- Ansible >= 2.10.  
+- Ansible >= 2.10.
+  > Commande de deploiement : sudo ansible-playbook playbook.yml  
 
 ### 2. Configuration
 Préparez votre environnement en créant le fichier de secrets :
@@ -43,12 +44,9 @@ Préparez votre environnement en créant le fichier de secrets :
 cp .env.example .env
 # Éditez ensuite le fichier .env avec vos identifiants
 
-### 3. Deploiement
- sudo ansible-playbook playbook.yml
 
 
 
 
-## 👨‍💻 Auteur
-Joan-Dev2006 - Apprenti DevOps / ISI
+
 
