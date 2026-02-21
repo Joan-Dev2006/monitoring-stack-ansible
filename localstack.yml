@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "4566:4566"            # Le port unique pour TOUS les services AWS
+    environment:
+      - SERVICES=s3,ec2,iam    # On définit ce qu'on veut simuler
+      - DEBUG=1
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"

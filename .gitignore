@@ -1,0 +1,17 @@
+/.env
+
+/data_db
+
+/grafana_storage
+
+/prometheus_db
+
+/alerte_path_prometheus
+
+/.terraform
+
+*.exe
+
+.*terraform.tfstate
+
+.*terraform.lock.hcl

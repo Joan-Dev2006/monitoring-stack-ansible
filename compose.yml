@@ -1,0 +1,52 @@
+services:
+  db_mysql:
+    image: mysql:8.0
+    restart: always
+    container_name: container_sql
+    environment:
+      MYSQL_ROOT_PASSWORD: "${mon_mot_de_passe}"
+      MYSQL_DATABASE: "${service_desk}"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "false"
+    volumes: 
+      - ./data_db:/var/lib/mysql
+      - ./scripts/service_desk_db.sql:/docker-entrypoint-initdb.d/service_desk_db.sql
+    ports:
+    - "${PORT_SQL}:3306"
+    networks:
+      - monitoring_networks
+      
+  db_grafana:
+    image: grafana/grafana-enterprise:latest
+    restart: always
+    container_name: container_grafana
+    user: '0'
+    ports:
+      - "${PORT_GRAFANA}:3000"
+    volumes:
+      - ./grafana-storage:/var/lib/grafana
+    depends_on:
+      - db_mysql
+    networks:
+      - monitoring_networks
+  
+  db_prometheus:
+    image: prom/prometheus:latest
+    restart: always
+    container_name: container_prometeus
+    environment:
+      - TZ=UTC
+    ports:
+      - "${PORT_PROMOTHEUS}:9090"
+    volumes:
+      - ./prometheus_db/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./alerte_path_prometheus/alerts.yml:/etc/prometheus/alerts.yml
+    depends_on: 
+      - db_mysql
+    networks:
+      - monitoring_networks
+
+networks:
+  monitoring_networks:
+    driver: bridge
+    
+  

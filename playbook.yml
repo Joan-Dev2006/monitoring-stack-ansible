@@ -1,0 +1,40 @@
+- name: "Installation et Lancement du Docker et Docker-compose"
+  hosts: localhost
+  connection: local
+
+
+  tasks: 
+    - name: "Installation de docker et docker-compose"
+      apt:
+        name: 
+          - docker.io
+          - docker-compose
+        update_cache: yes
+        state: present
+
+    - name: "Création de l'arborescence des dossiers"
+      file:
+        path: "/home/astaroh/app/{{ item }}"
+        state: directory
+        mode: '0755'
+      loop:
+        - scripts
+        - prometheus_db
+        - alerte_path_prometheus
+
+    - name: "Copie des fichiers de configuration"
+      copy:
+        dest: "{{ item.dest }}"
+        src: "{{ item.src }}"
+        mode: '0644' # Lecture seule pour la config, plus sécurisé
+      loop:
+        - { src: 'compose.yml', dest: '/home/astaroh/app/compose.yml' }
+        - { src: '.env', dest: '/home/astaroh/app/.env' }
+        - { src: 'prometheus_db/prometheus.yml', dest: '/home/astaroh/app/prometheus_db/prometheus.yml' }
+        - { src: 'alerte_path_prometheus/alerts.yml', dest: '/home/astaroh/app/alerte_path_prometheus/alerts.yml' }
+        - { src: 'scripts/service_desk_db.sql', dest: '/home/astaroh/app/scripts/service_desk_db.sql' }
+
+    - name: "Lancement du docker-compose"
+      shell: docker compose -f compose.yml up -d
+      args:
+        chdir: /home/astaroh/app/
