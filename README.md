@@ -43,10 +43,7 @@ Préparez votre environnement en créant le fichier de secrets :
 ```bash
 cp .env.example .env
 # Éditez ensuite le fichier .env avec vos identifiants
+exit
 
-
-
-
-
-
-
+### Perspectives et Évolutions
+En vue de pouvoir ameliorer la scalabilite et de permettre la haute disponibilite des services en temps reel , l'utilisation des Kubernetes sera d'une grande efficacite pour garantir le deploiement des services.
