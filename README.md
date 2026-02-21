@@ -28,14 +28,7 @@ Ce projet automatise le déploiement d'une stack de supervision complète. Il ut
 - **Initialisation DB** : Injection automatique du schéma SQL au premier lancement.
 
 ---
-## 🛠️Structure du Dépôt 
-.
-├── playbook.yml          # Point d'entrée de l'automatisation Ansible
-├── compose.yml           # Définition des conteneurs Docker
-├── .env.example          # Modèle des variables d'environnement
-├── .gitignore            # Exclusion des fichiers sensibles (Terraform, .env)
-└── scripts/
-    └── service_desk_db.sql # Schéma d'initialisation de la DB
+
 
 ## 🚀 Guide de Démarrage
 
