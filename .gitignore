@@ -12,6 +12,6 @@
 
 *.exe
 
-.*terraform.tfstate
+*.terraform.tfstate
 
 .*terraform.lock.hcl
