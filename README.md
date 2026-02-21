@@ -29,21 +29,13 @@ Ce projet automatise le déploiement d'une stack de supervision complète. Il ut
 
 ---
 
-
 ## 🚀 Guide de Démarrage
 
-### 1. Prérequis
+###  Prérequis
 - Système Linux (Ubuntu/Debian recommandé) ou WSL2.
 - Docker Engine >= 20.10 & Docker Compose V2.
 - Ansible >= 2.10.
   > Commande de deploiement : sudo ansible-playbook playbook.yml  
-
-### 2. Configuration
-Préparez votre environnement en créant le fichier de secrets :
-```bash
-cp .env.example .env
-# Éditez ensuite le fichier .env avec vos identifiants
-exit
 
 ### Perspectives et Évolutions
 En vue de pouvoir ameliorer la scalabilite et de permettre la haute disponibilite des services en temps reel , l'utilisation des Kubernetes sera d'une grande efficacite pour garantir le deploiement des services.
